@@ -1,16 +1,33 @@
+<div align="center">
+
 # claude-mods
 
-Mods for [Claude Code](https://code.claude.com/docs/en/plugins/mods/overview): plugins whose hooks run inside Claude Code and can draw in its interface. Works in the terminal and in the Code tab of the Claude desktop app.
+**Mods for [Claude Code](https://code.claude.com/docs/en/plugins/mods/overview): plugins that run inside Claude Code and draw in its interface.**
 
-[中文说明](#中文说明)
+[![License: MIT](https://img.shields.io/badge/license-MIT-c96442.svg)](LICENSE)
+[![Claude Code mod](https://img.shields.io/badge/Claude%20Code-mod-1f1e1b.svg)](https://code.claude.com/docs/en/plugins/mods/overview)
+![Works in](https://img.shields.io/badge/works%20in-terminal%20%7C%20desktop%20app-8a877f.svg)
 
-## Mods
+[English](#inline-next-steps) · [中文说明](#中文说明)
 
-| Mod | What it does |
-| :- | :- |
-| [`inline-next-steps`](plugins/inline-next-steps) | Claude lists what you might ask next at the end of its final answer. The list is hidden from the transcript and shown as checkboxes above the prompt. Tick some, and they go into the prompt box for you to edit and send. No extra model calls. |
+</div>
 
-## Install
+## inline-next-steps
+
+Claude ends each answer with a few things you might ask next. They show up as checkboxes above the prompt. Tick one or more, and they go into the prompt box for you to edit and send.
+
+<p align="center">
+  <img src="docs/demo.svg" alt="The end of Claude's answer, then four next-step checkboxes above the prompt with one ticked, and the prompt box holding the ticked request" width="820">
+  <br>
+  <sub>Illustration of the Claude Code desktop app with the mod on.</sub>
+</p>
+
+- **No extra model calls.** The model that is already answering writes the suggestions, with the whole conversation in view.
+- **Nothing is sent for you.** Ticked steps are put in the prompt box; you edit and press Enter.
+- **Work or questions.** 2 to 6 concrete next steps after a task; 1 to 3 follow-up questions after a plain question.
+- **Stays out of the way.** The raw block is hidden from the transcript, and nothing is attached where the mod can't draw buttons.
+
+### Install
 
 Requires Claude Code with mods support (v2.1.286 or later).
 
@@ -21,20 +38,20 @@ claude plugin install inline-next-steps@claude-mods
 
 Then start a new session, or run `/reload-plugins` in an open one.
 
-## inline-next-steps
-
 ### How it works
 
-1. **Instructions**: on each prompt you send, the mod attaches a short instruction as context you don't see. It asks Claude to end its final answer with a `<next-steps>` block: 2 to 6 next steps for work, or 1 to 3 follow-up questions for a plain question. Each line is `short label | the full request`.
-2. **Hiding**: the block is removed from how the reply is drawn. The stored conversation is left untouched, so the model's thinking blocks stay valid.
-3. **Buttons**: when the turn ends, the block becomes checkboxes in the band above the prompt.
-4. **Put in prompt**: the ticked requests go into the prompt box, numbered if there are several. Nothing is sent until you press Enter.
+<p align="center">
+  <img src="docs/how-it-works.svg" alt="Four steps: attach an instruction, Claude answers with a next-steps block, the block is shown as checkboxes, ticked steps fill the prompt box" width="820">
+</p>
+
+1. **Attach**: each prompt you send carries a short instruction you don't see, asking Claude to end its final answer with a `<next-steps>` block. Each line is `short label | the full request`.
+2. **Answer**: Claude writes the block at the end of its final answer, never in progress notes between tool calls or in a subagent.
+3. **Show**: the block is removed from how the reply is drawn and becomes checkboxes in the band above the prompt. The stored conversation is left untouched, so the model's thinking blocks stay valid.
+4. **Fill**: the ticked requests go into the prompt box, numbered if there are several.
 
 ### Cost
 
-No extra model calls. The suggestions are written by the model that is already answering, which already has the whole conversation in context. Each turn costs roughly 100 extra output tokens for the block and about 250 input tokens for the instruction, which is cached afterwards.
-
-Compared with mods that ask a second model for suggestions after each turn, this avoids re-reading the conversation, and the suggestions can draw on everything in it, not only the last exchange.
+Each turn costs roughly 100 extra output tokens for the block and about 250 input tokens for the instruction, which is cached afterwards. Mods that ask a second model for suggestions after each turn pay for re-reading the conversation, and see only part of it.
 
 ### Limits
 
@@ -58,11 +75,14 @@ claude plugin validate plugins/<mod>
 
 ## 中文说明
 
-这里是 Claude Code 的 mod。mod 是一种插件，它的代码在 Claude Code 内部运行，可以在界面上绘制内容。终端和 Claude 桌面 App 的 Code 标签页都能用。
-
 ### inline-next-steps
 
-Claude 在最终回答的末尾列出你接下来可能会问的事情。这个列表在对话里是隐藏的，以复选框的形式显示在输入框上方。勾选几项后，它们会被填进输入框，你可以先修改，确认后再发送。**不会额外调用任何模型。**
+Claude 在每次回答的末尾列出几条你接下来可能会问的事情，以复选框的形式显示在输入框上方。勾选一条或几条后，它们会被填进输入框，你可以先修改，确认后再发送。
+
+- **不额外调用模型**：建议由正在回答的模型顺便写出，它能看到完整的对话。
+- **不会替你发送**：勾选的内容只是填进输入框，由你修改后按回车发送。
+- **做事和问答都适用**：完成任务后给出 2–6 个具体的下一步；回答普通问题后给出 1–3 个延伸问题。
+- **不打扰**：原始的建议块在对话里是隐藏的；在无法显示按钮的地方，也不会附加说明。
 
 **安装**
 
@@ -75,11 +95,11 @@ claude plugin install inline-next-steps@claude-mods
 
 **原理**
 
-1. 你每发一条消息，mod 会附上一段你看不到的简短说明，让 Claude 在最终回答末尾写一个 `<next-steps>` 块：做事类请求给 2–6 个下一步，普通知识问答给 1–3 个延伸问题。
-2. 这个块只从界面显示上去掉，存储的对话记录不动，所以模型的思考块依然有效。
-3. 一轮结束后，这个块会变成输入框上方的复选框。
-4. 点 “Put in prompt” 后，勾选的内容会填进输入框，多条会自动编号，不会自动发送。
+1. **附加说明**：你每发一条消息，mod 会附上一段你看不到的简短说明，让 Claude 在最终回答末尾写一个 `<next-steps>` 块，每行格式是 `短标签 | 完整指令`。
+2. **回答**：Claude 只在最终回答里写这个块，工具调用之间的进度说明和子 agent 里都不会写。
+3. **显示**：这个块只从界面显示上去掉，变成输入框上方的复选框。存储的对话记录不动，所以模型的思考块依然有效。
+4. **填入**：勾选的内容会填进输入框，多条会自动编号。
 
-**成本**：每轮大约多 100 个输出 token，外加约 250 个输入 token 的说明，这部分之后会被缓存。建议是由正在回答的模型顺便写的，它本来就有完整的上下文，所以不需要第二个模型再读一遍对话。
+**成本**：每轮大约多 100 个输出 token，外加约 250 个输入 token 的说明，这部分之后会被缓存。如果改用第二个模型在每轮结束后生成建议，就得把对话重新读一遍，而且只能看到其中一部分。
 
-**局限**：模型偶尔会漏写这个块或写错格式，这一轮就不会出现按钮。在 VS Code 聊天面板和 `claude -p` 里不会附加说明，所以也不会出现块的原文。
+**局限**：模型偶尔会漏写这个块或写错格式，这一轮就不会出现按钮。在 VS Code 聊天面板和 `claude -p` 里不会附加说明，所以也不会出现块的原文。回答逐字输出时，块的开头标签一出现就会被隐藏。

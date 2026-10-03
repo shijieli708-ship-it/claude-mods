@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 470" width="820" height="470" role="img" aria-labelledby="t d">
+  <title id="t">inline-next-steps in the Claude Code desktop app</title>
+  <desc id="d">The end of Claude's answer, then a band above the prompt with four next-step checkboxes in two columns, one ticked, a "Put 1 in prompt" button and a Dismiss link, then the prompt box holding the ticked request.</desc>
+  <style>
+    .win { fill: #ffffff; stroke: #e4e2dc; }
+    .bar { fill: #f5f4f0; }
+    .dot { fill: #d9d6cf; }
+    .txt { fill: #1f1e1b; }
+    .dim { fill: #8a877f; }
+    .faint { fill: #b3b0a8; }
+    .rule { stroke: #ecebe6; }
+    .band { fill: #faf9f6; stroke: #ecebe6; }
+    .box { fill: #ffffff; stroke: #d9d6cf; }
+    .on { fill: #c96442; }
+    .btn { fill: #c96442; }
+    .btntxt { fill: #ffffff; }
+    .caret { fill: #c96442; }
+    .tag { fill: none; stroke: #c9b79d; }
+    .tagtxt { fill: #8a6d4a; }
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    @media (prefers-color-scheme: dark) {
+      .win { fill: #1f1e1c; stroke: #3a3936; }
+      .bar { fill: #262523; }
+      .dot { fill: #4a4844; }
+      .txt { fill: #ece9e2; }
+      .dim { fill: #9a968d; }
+      .faint { fill: #6d6a63; }
+      .rule { stroke: #33322f; }
+      .band { fill: #252422; stroke: #33322f; }
+      .box { fill: #1f1e1c; stroke: #4a4844; }
+      .tag { fill: none; stroke: #6b5a45; }
+      .tagtxt { fill: #d9b48a; }
+    }
+  </style>
+
+  <!-- window -->
+  <rect class="win" x="10" y="10" width="800" height="450" rx="14"/>
+  <path class="bar" d="M24 10 h772 a14 14 0 0 1 14 14 v22 h-800 v-22 a14 14 0 0 1 14 -14 z"/>
+  <circle class="dot" cx="32" cy="28" r="5"/>
+  <circle class="dot" cx="50" cy="28" r="5"/>
+  <circle class="dot" cx="68" cy="28" r="5"/>
+  <text class="dim" x="410" y="32" font-size="12" text-anchor="middle">Code · Why is the sky blue?</text>
+
+  <!-- end of the answer -->
+  <text class="txt" x="48" y="86" font-size="15">…so blue light is scattered across the whole sky, while at sunset the</text>
+  <text class="txt" x="48" y="110" font-size="15">longer path through the air leaves mostly red and orange.</text>
+  <rect class="tag" x="48" y="128" width="268" height="24" rx="12" stroke-dasharray="4 3" stroke-width="1.2"/>
+  <text class="tagtxt mono" x="62" y="144" font-size="11.5">(the &lt;next-steps&gt; block is hidden)</text>
+
+  <line class="rule" x1="48" y1="176" x2="772" y2="176" stroke-width="1"/>
+
+  <!-- band above the prompt -->
+  <rect class="band" x="40" y="192" width="740" height="132" rx="10"/>
+  <!-- left column -->
+  <rect class="on" x="60" y="211" width="15" height="15" rx="3.5"/>
+  <path d="M63.5 218.5 l3 3 l5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="txt" x="85" y="223.5" font-size="14" font-weight="600">Why sunsets are red</text>
+  <rect class="box" x="60" y="243" width="15" height="15" rx="3.5" stroke-width="1.5"/>
+  <text class="dim" x="85" y="255.5" font-size="14">Is the sea blue for the same reason?</text>
+  <!-- right column -->
+  <rect class="box" x="420" y="211" width="15" height="15" rx="3.5" stroke-width="1.5"/>
+  <text class="dim" x="445" y="223.5" font-size="14">Why isn't the sky violet?</text>
+  <rect class="box" x="420" y="243" width="15" height="15" rx="3.5" stroke-width="1.5"/>
+  <text class="dim" x="445" y="255.5" font-size="14">Sky colour on Mars</text>
+  <!-- actions -->
+  <rect class="btn" x="60" y="278" width="134" height="30" rx="8"/>
+  <text class="btntxt" x="127" y="297.5" font-size="13.5" font-weight="600" text-anchor="middle">Put 1 in prompt</text>
+  <text class="dim" x="212" y="297.5" font-size="13.5">Dismiss</text>
+
+  <!-- prompt box -->
+  <rect class="box" x="40" y="340" width="740" height="96" rx="12" stroke-width="1.5"/>
+  <text class="txt" x="60" y="372" font-size="15">Why is the sunset red when the midday sky is blue? Explain it with the</text>
+  <text class="txt" x="60" y="396" font-size="15">same scattering idea.</text>
+  <rect class="caret" x="203" y="382" width="2" height="18"/>
+  <text class="faint" x="760" y="424" font-size="12" text-anchor="end">Enter to send · you can edit first</text>
+</svg>
