@@ -1,0 +1,12 @@
+{
+  "name": "claude-mods",
+  "description": "Claude Code mods by Shijie Li",
+  "owner": { "name": "Shijie Li" },
+  "plugins": [
+    {
+      "name": "inline-next-steps",
+      "source": "./plugins/inline-next-steps",
+      "description": "Next-step suggestions written by the main model, shown as checkboxes above the prompt"
+    }
+  ]
+}

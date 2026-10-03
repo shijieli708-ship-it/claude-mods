@@ -1,0 +1,14 @@
+# Types written locally by /plugin-types
+.claude/
+.claude-plugin/types/
+plugins/*/.claude-plugin/types/
+
+# Debug output
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+node_modules/

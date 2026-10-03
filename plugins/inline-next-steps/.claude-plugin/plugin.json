@@ -1,0 +1,8 @@
+{
+  "name": "inline-next-steps",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "The main model lists next steps at the end of its final answer; they show as checkboxes above the prompt, with no extra model calls",
+  "author": { "name": "Shijie Li" },
+  "types": "./types/index.d.ts"
+}
